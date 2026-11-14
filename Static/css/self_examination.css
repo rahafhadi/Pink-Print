@@ -1,0 +1,365 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --plum: #914664;
+    --deep-plum: #71364F;
+    --rose: #D88EAB;
+    --soft-rose: #F5DCE6;
+    --light-rose: #FFF8FA;
+    --white: #FFFFFF;
+    --text: #49333E;
+    --muted: #987D89;
+    --border: #F0E1E7;
+    --shadow: 0 12px 35px rgba(113, 54, 79, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--light-rose);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Header */
+
+.page-header {
+    width: 100%;
+    min-height: 85px;
+    padding: 15px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    width: 105px;
+    height: auto;
+    object-fit: contain;
+}
+
+.back-link {
+    color: var(--plum);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--rose);
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    background-color: var(--plum);
+    color: var(--white);
+    border: 1px solid var(--plum);
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.back-button:hover {
+    background-color: var(--deep-plum);
+    border-color: var(--deep-plum);
+    transform: translateY(-2px);
+}
+
+/* Main Layout */
+
+.examination-container {
+    width: min(900px, 90%);
+    margin: 55px auto;
+}
+
+/* Intro */
+
+.intro-section {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-label {
+    display: inline-block;
+    color: var(--rose);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.intro-section h1 {
+    color: var(--deep-plum);
+    font-size: clamp(23px, 4vw, 34px);
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.intro-section p {
+    max-width: 620px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 2;
+}
+
+/* Video Card */
+
+.video-card {
+    background: var(--white);
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+/* Progress */
+
+.progress-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 13px;
+    color: var(--plum);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#stepCounter {
+    color: var(--rose);
+    direction: ltr;
+}
+
+.progress-track {
+    width: 100%;
+    height: 7px;
+    background: var(--soft-rose);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progress-fill {
+    width: 11.11%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--plum));
+    border-radius: 20px;
+    transition: width 0.35s ease;
+}
+
+/* Video */
+
+.video-wrapper {
+    width: 100%;
+    background: #241a21;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+}
+
+.video-wrapper video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Description */
+
+.step-description {
+    padding: 25px 5px 10px;
+}
+
+.step-description h2 {
+    color: var(--deep-plum);
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.step-description p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 2.1;
+}
+
+/* Navigation */
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.navigation-buttons button {
+    min-width: 145px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    border: 1px solid var(--plum);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#prevStep {
+    color: var(--plum);
+    background: var(--white);
+}
+
+#prevStep:hover:not(:disabled) {
+    background: var(--soft-rose);
+}
+
+#nextStep {
+    color: var(--white);
+    background: var(--plum);
+}
+
+#nextStep:hover {
+    background: var(--deep-plum);
+    transform: translateY(-2px);
+}
+
+.navigation-buttons button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Completion */
+
+.completion-section {
+    text-align: center;
+    padding: 45px 25px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+}
+
+.completion-section h2 {
+    color: var(--deep-plum);
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.completion-section p {
+    color: var(--muted);
+    line-height: 2;
+    margin-bottom: 25px;
+}
+
+.complete-button {
+    display: inline-block;
+    padding: 13px 25px;
+    color: var(--white);
+    background: var(--plum);
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+.complete-button:hover {
+    background: var(--deep-plum);
+}
+
+/* Medical Note */
+
+.medical-note {
+    max-width: 720px;
+    margin: 25px auto;
+    padding: 15px 20px;
+    border-right: 3px solid var(--rose);
+    background: var(--soft-rose);
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 2;
+    border-radius: 8px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    .page-header {
+        min-height: 70px;
+        padding: 12px 5%;
+    }
+
+    .logo {
+        width: 85px;
+    }
+
+    .examination-container {
+        width: 92%;
+        margin: 35px auto;
+    }
+
+    .intro-section {
+        margin-bottom: 25px;
+    }
+
+    .intro-section p {
+        font-size: 13px;
+    }
+
+    .video-card {
+        padding: 17px;
+        border-radius: 16px;
+    }
+
+    .video-wrapper {
+        border-radius: 10px;
+    }
+
+    .step-description {
+        padding-top: 18px;
+    }
+
+    .step-description h2 {
+        font-size: 18px;
+    }
+
+    .step-description p {
+        font-size: 13px;
+    }
+
+    .navigation-buttons {
+        gap: 10px;
+    }
+
+    .navigation-buttons button {
+        min-width: 0;
+        flex: 1;
+        padding: 11px 8px;
+        font-size: 12px;
+    }
+
+    .completion-section {
+        padding: 30px 18px;
+    }
+
+    .complete-button {
+        font-size: 13px;
+    }
+}

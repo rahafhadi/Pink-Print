@@ -1,0 +1,327 @@
+
+/* =========================
+   Report Details Page
+========================= */
+
+.report-details-content {
+    width: 84%;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 40px 0 55px;
+    flex: 1;
+}
+
+/* Page Heading */
+
+.report-details-heading {
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+}
+
+.report-details-heading .eyebrow {
+    color: var(--pink);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.report-details-heading h1 {
+    color: var(--primary-dark);
+    font-size: 28px;
+    font-weight: 800;
+    margin: 8px 0;
+}
+
+.report-details-heading p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* Report Overview */
+
+.report-overview {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.9s ease 0.1s both;
+}
+
+.report-overview .report-info {
+    margin-top: 20px;
+}
+
+/* Questions Heading */
+
+.answers-heading {
+    color: var(--primary-dark);
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+/* Individual Answer */
+
+.answer-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 20px 23px;
+    margin-bottom: 13px;
+    transition: 0.3s ease;
+    animation: fadeUp 0.7s ease both;
+}
+
+.answer-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--pink);
+    box-shadow: 0 8px 22px rgba(145, 70, 100, 0.07);
+}
+
+.answer-question {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 16px;
+}
+
+.answer-number {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    background: var(--light-pink);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.answer-question h3 {
+    color: var(--primary-dark);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.7;
+}
+
+.answer-value {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.answer-value span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.answer-value strong {
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Medical Note */
+
+.details-medical-note {
+    margin-top: 25px;
+    padding: 16px 20px;
+    background: var(--light-pink);
+    border-radius: 13px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .report-details-content {
+        width: 90%;
+        padding: 30px 0;
+    }
+
+    .report-details-heading h1 {
+        font-size: 23px;
+    }
+
+    .report-overview {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .report-details-content {
+        width: 92%;
+        padding: 25px 0;
+    }
+
+    .answer-card {
+        padding: 17px;
+    }
+
+    .answer-question h3 {
+        font-size: 14px;
+    }
+
+    .answer-value strong {
+        font-size: 13px;
+    }
+}
+/* Footer Icons Size */
+
+.footer-item {
+    font-size: 24px;
+    gap: 6px;
+}
+
+.footer-item span {
+    font-size: 13px;
+}
+
+.footer-item.brand-footer {
+    font-size: 26px;
+}
+
+
+/* =========================
+   Gail Risk Result
+========================= */
+
+.gail-result-section {
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+}
+
+.gail-result-heading {
+    color: var(--primary-dark);
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 18px;
+}
+
+.gail-result-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(145, 70, 100, 0.05);
+}
+
+.gail-result-label {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.gail-risk-value {
+    color: var(--primary);
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    margin: 12px 0;
+    direction: ltr;
+}
+
+.gail-result-description {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+.gail-result-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 25px 0;
+}
+
+.gail-result-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.gail-result-details > div {
+    background: var(--pale-pink);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+}
+
+.gail-result-details span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.gail-result-details strong {
+    color: var(--primary-dark);
+    font-size: 20px;
+    font-weight: 800;
+    direction: ltr;
+}
+
+.gail-reference {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.gail-medical-warning {
+    background: var(--light-pink);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 17px 20px;
+    margin-top: 20px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.gail-medical-warning strong {
+    display: block;
+    color: var(--primary-dark);
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.gail-medical-warning p {
+    margin: 0;
+}
+
+/* Gail Result Responsive */
+
+@media (max-width: 480px) {
+    .gail-result-card {
+        padding: 20px 16px;
+    }
+
+    .gail-risk-value {
+        font-size: 40px;
+    }
+
+    .gail-result-details {
+        gap: 10px;
+    }
+
+    .gail-result-details > div {
+        padding: 14px 8px;
+    }
+
+    .gail-result-details strong {
+        font-size: 17px;
+    }
+}

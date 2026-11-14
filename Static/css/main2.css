@@ -1,0 +1,732 @@
+/* =========================
+   1. Global Settings
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #914664;
+    --primary-dark: #71364F;
+    --pink: #D88EAB;
+    --soft-pink: #F5DCE6;
+    --light-pink: #FBEFF3;
+    --pale-pink: #FFF8FA;
+    --text: #49333E;
+    --muted: #987D89;
+    --white: #FFFFFF;
+    --border: #F0E1E7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--pale-pink);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dashboard {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   2. Header
+========================= */
+
+.header {
+    height: 85px;
+    padding: 0 8%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transform: translateX(60px);
+}
+
+.brand-icon {
+    color: var(--primary);
+    font-size: 32px;
+}
+
+.brand-name {
+    font-size: 23px;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.schedule-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: var(--light-pink);
+    color: var(--primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.schedule-link:hover {
+    background: var(--soft-pink);
+}
+
+.schedule-icon {
+    font-size: 21px;
+}
+
+
+/* =========================
+   3. Main Content
+========================= */
+
+.main-content {
+    width: 84%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 45px 0;
+    flex: 1;
+}
+
+.main-content.no-banner {
+    padding-top: 20px;
+}
+
+.main-content.no-banner .features-section {
+    margin-top: 0;
+}
+
+/* =========================
+   4. Setup Banner
+========================= */
+
+.setup-banner {
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    padding: 30px 40px;
+    border-radius: 22px;
+    background: linear-gradient(
+        120deg,
+        #F1D2DF,
+        #E6B5C8,
+        #F8E5EC
+    );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 8px 25px rgba(145, 70, 100, 0.07);
+}
+
+.setup-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.setup-tag {
+    display: inline-block;
+    color: var(--primary-dark);
+    background: rgba(255,255,255,0.55);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.setup-content h1 {
+    color: var(--primary-dark);
+    font-size: 27px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.setup-content p {
+    color: #795466;
+    font-size: 14px;
+    line-height: 1.9;
+    margin-bottom: 18px;
+}
+
+.setup-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 22px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.setup-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.setup-decoration {
+    position: absolute;
+    left: 55px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.decoration-icon {
+    font-size: 90px;
+    color: rgba(145, 70, 100, 0.35);
+}
+
+
+/* =========================
+   5. Features Section
+========================= */
+
+.features-section {
+    margin-top: 42px;
+}
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.section-heading p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================
+   6. Feature Cards
+========================= */
+.feature-card {
+    position: relative;
+    min-height: 185px;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--white);
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    transition: 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(145, 70, 100, 0.10);
+    border-color: var(--pink);
+}
+
+.feature-icon {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    border-radius: 16px;
+    background: var(--light-pink);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon svg {
+    width: 29px;
+    height: 29px;
+}
+
+.feature-text {
+    padding-top: 3px;
+}
+
+.feature-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--pink);
+}
+
+.feature-text h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin: 5px 0;
+}
+
+.feature-text p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.card-arrow {
+    position: absolute;
+    left: 20px;
+    bottom: 17px;
+    color: var(--pink);
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.feature-card:hover .card-arrow {
+    left: 15px;
+    color: var(--primary);
+}
+
+
+/* Individual Card Accents */
+
+.tracker .feature-icon {
+    background: #F5E7ED;
+}
+
+.assistant .feature-icon {
+    background: #EEE5EF;
+    color: #8A5A86;
+}
+
+.reports .feature-icon {
+    background: #F9E8ED;
+}
+
+
+/* =========================
+   7. Footer
+========================= */
+
+.footer {
+    min-height: 85px;
+    flex-shrink: 0;
+    padding: 12px 8%;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.footer-item:hover {
+    color: var(--primary);
+}
+
+.footer-icon {
+    font-size: 23px;
+    line-height: 1.2;
+}
+
+.brand-footer {
+    color: var(--primary);
+}
+
+.brand-footer .footer-icon {
+    color: #D66F9A;
+    font-size: 27px;
+}
+
+
+/* =========================
+   8. Responsive Design
+========================= */
+
+@media (max-width: 768px) {
+
+    .header {
+        height: 70px;
+        padding: 0 5%;
+    }
+
+    .brand-name {
+        font-size: 19px;
+    }
+
+    .main-content {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .setup-banner {
+        min-height: 210px;
+        padding: 25px;
+    }
+
+    .setup-content h1 {
+        font-size: 22px;
+    }
+
+    .setup-decoration {
+        left: -35px;
+        opacity: 0.5;
+    }
+
+    .features-grid {
+        gap: 13px;
+    }
+
+    .feature-card {
+        padding: 18px;
+        min-height: 190px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .feature-text h3 {
+        font-size: 16px;
+    }
+
+    .feature-text p {
+        font-size: 11px;
+    }
+
+    .footer {
+        gap: 55px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .header {
+        padding: 0 4%;
+    }
+
+    .brand-name {
+        font-size: 17px;
+    }
+
+    .brand-icon {
+        font-size: 25px;
+    }
+
+    .schedule-link {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .main-content {
+        width: 92%;
+        margin: 0 auto;
+        padding: 22px 0;
+    }
+
+    .setup-banner {
+        min-height: 230px;
+        padding: 22px 18px;
+    }
+
+    .setup-content h1 {
+        font-size: 20px;
+        line-height: 1.6;
+    }
+
+    .setup-content p {
+        font-size: 12px;
+    }
+
+    .setup-decoration {
+        left: -75px;
+        opacity: 0.35;
+    }
+
+    .features-section {
+        margin-top: 30px;
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    .feature-card {
+        min-height: 185px;
+        padding: 14px 12px;
+        border-radius: 15px;
+    }
+    .feature-icon {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        border-radius: 13px;
+    }
+
+    .feature-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .feature-label {
+        font-size: 8px;
+    }
+
+    .feature-text h3 {
+        font-size: 14px;
+    }
+
+    .feature-text p {
+        font-size: 10px;
+        line-height: 1.8;
+    }
+
+    .card-arrow {
+        left: 12px;
+        bottom: 10px;
+    }
+
+    .footer {
+        min-height: 75px;
+        gap: 0;
+        justify-content: space-around;
+        padding: 10px 5%;
+    }
+}
+.brand-logo {
+    width: 220px;
+    height: 90px;
+    object-fit: contain;
+}
+
+/* Welcome Section */
+.welcome-heading h2 {
+    color: var(--primary-dark);
+    font-size: 25px;
+}
+
+.welcome-heading p {
+    line-height: 1.9;
+}
+
+
+/* Awareness Section */
+.awareness-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    margin-top: 35px;
+    padding: 30px 35px;
+    background: var(--soft-pink);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+}
+
+.awareness-content {
+    max-width: 650px;
+    z-index: 1;
+}
+
+.awareness-tag {
+    color: var(--primary);
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.awareness-content h2 {
+    color: var(--primary-dark);
+    font-size: 25px;
+    margin: 10px 0;
+}
+
+.awareness-content p {
+    color: var(--text);
+    line-height: 1.9;
+    margin-bottom: 20px;
+}
+
+.awareness-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 22px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.awareness-button:hover {
+    background: var(--primary-dark);
+}
+
+.awareness-decoration {
+    font-size: 110px;
+    color: rgba(145, 70, 100, 0.15);
+}
+
+
+/* Medical Disclaimer */
+.medical-disclaimer {
+    margin-top: 30px;
+    padding: 20px 25px;
+    background: var(--pale-pink);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.medical-disclaimer h3 {
+    color: var(--primary-dark);
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.medical-disclaimer p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+    margin: 0;
+}
+
+.copyright {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 18px 10px;
+}
+
+/* ===== Page Entrance Animations ===== */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    animation: fadeUp 1.2s ease both;
+}
+
+.setup-banner {
+    animation: fadeUp 1.5s ease 0.15s both;
+}
+
+.section-heading {
+    animation: fadeUp 1.3s ease 0.3s both;
+}
+
+.feature-card {
+    animation: fadeUp 1.3s ease both;
+}
+
+.feature-card:nth-child(1) {
+    animation-delay: 1.1s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 1.35s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 1.6s;
+}
+
+.feature-card:nth-child(4) {
+    animation-delay: 1.85s;
+}
+
+.awareness-section {
+    animation: fadeUp 1.5s ease 2.2s both;
+}
+
+
+/* ===== Card Hover Effects ===== */
+
+.feature-card {
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 25px rgba(145, 70, 100, 0.12);
+}
+
+.awareness-button {
+    transition: all 0.3s ease;
+}
+
+.awareness-button:hover {
+    transform: translateX(-4px);
+}
+
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

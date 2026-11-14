@@ -1,0 +1,1048 @@
+/* ==========================================================================
+   بصمة وردية - Pink Print | نظام تتبع الفحوصات والتقارير السابقة
+   Tracker CSS - متوافق بالكامل مع main2.css وهوية التطبيق
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+/* --- المتغيرات المعتمدة من main2.css --- */
+:root {
+    --primary: #914664;
+    --primary-dark: #71364F;
+    --pink: #D88EAB;
+    --soft-pink: #F5DCE6;
+    --light-pink: #FBEFF3;
+    --pale-pink: #FFF8FA;
+    --text: #49333E;
+    --muted: #987D89;
+    --white: #FFFFFF;
+    --border: #F0E1E7;
+    --success-bg: #E8F5E9;
+    --success-text: #2E7D32;
+    --shadow-sm: 0 4px 15px rgba(145, 70, 100, 0.05);
+    --shadow-md: 0 8px 25px rgba(145, 70, 100, 0.08);
+    --shadow-lg: 0 14px 35px rgba(145, 70, 100, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--pale-pink);
+    color: var(--text);
+    min-height: 100vh;
+    direction: rtl;
+    text-align: right;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* =========================
+   Layout & Dashboard
+========================= */
+.dashboard {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   Header (طراز main2.css)
+========================= */
+.header {
+    width: 100%;
+    min-height: 85px;
+    padding: 15px 7% 15px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.brand-logo {
+    width: 220px;
+    height: 90px;
+    object-fit: contain;
+    transform: translateX(60px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    color: var(--primary);
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-name {
+    font-size: 23px;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 12px;
+    background: var(--white);
+    color: var(--primary);
+    border: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    background: var(--light-pink);
+    border-color: var(--pink);
+    transform: translateX(3px);
+}
+
+.schedule-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: var(--light-pink);
+    color: var(--primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.schedule-link:hover {
+    background: var(--soft-pink);
+}
+
+/* =========================
+   Main Tracker Container
+========================= */
+.main-content {
+    width: 90%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 35px 0 60px 0;
+    flex: 1;
+}
+
+/* Page Intro / Breadcrumb */
+.tracker-intro {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.tracker-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--soft-pink);
+    color: var(--primary-dark);
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.tracker-intro h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+}
+
+.tracker-intro p {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* ===================================================
+   Top Button: لتسجيل فحص جديد (Log a New Self Exam)
+=================================================== */
+.top-action-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.btn-new-exam {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+    padding: 15px 28px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 22px rgba(145, 70, 100, 0.22);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-new-exam:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(145, 70, 100, 0.32);
+}
+
+.btn-new-exam:active {
+    transform: translateY(0);
+}
+
+.btn-new-exam svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
+}
+
+/* ===================================================
+   Exam Cards List (البوكسات)
+=================================================== */
+.reports-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.exam-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.exam-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--pink);
+}
+
+/* علامة أحدث فحص */
+.exam-card.is-latest::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--primary);
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+}
+
+/* Card Header: التاريخ + أيقونة الحذف */
+.card-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.date-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.calendar-icon-box {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background: var(--light-pink);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+}
+
+.exam-card:hover .calendar-icon-box {
+    background: var(--soft-pink);
+    transform: scale(1.05);
+}
+
+.calendar-icon-box svg {
+    width: 24px;
+    height: 24px;
+}
+
+.date-text-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.exam-date {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.exam-time {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.latest-tag {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--light-pink);
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-top: 3px;
+    width: fit-content;
+}
+
+/* زر الحذف */
+.btn-delete-card {
+    background: transparent;
+    color: var(--muted);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.25s ease;
+}
+
+.btn-delete-card:hover {
+    color: #C62828;
+    background: #FFEBEE;
+    transform: scale(1.1);
+}
+
+.btn-delete-card svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Card Bottom Buttons: انظري النتيجة / تعديل النتيجة */
+.card-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.btn-view-result,
+.btn-edit-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+}
+
+/* زر انظري النتيجة */
+.btn-view-result {
+    background: var(--white);
+    color: var(--primary-dark);
+    border: 1.5px solid var(--border);
+}
+
+.btn-view-result:hover {
+    background: var(--light-pink);
+    border-color: var(--pink);
+    color: var(--primary);
+}
+
+.btn-view-result svg.chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.btn-view-result.active svg.chevron {
+    transform: rotate(180deg);
+}
+
+/* زر تعديل النتيجة (موجود في آخر فحص) */
+.btn-edit-result {
+    background: var(--light-pink);
+    color: var(--primary);
+    border: 1.5px solid var(--soft-pink);
+}
+
+.btn-edit-result:hover {
+    background: var(--soft-pink);
+    border-color: var(--pink);
+    color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-edit-result svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* ===================================================
+   تفاصيل النتيجة (Accordion Result Details)
+=================================================== */
+.exam-result-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0;
+    border-top: 1px dashed transparent;
+}
+
+.exam-result-details.expanded {
+    max-height: 400px;
+    opacity: 1;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top-color: var(--border);
+}
+
+.result-box-content {
+    background: var(--pale-pink);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.result-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    width: fit-content;
+}
+
+.result-status-pill.normal {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.result-status-pill.attention {
+    background: #FFF3E0;
+    color: #E65100;
+}
+
+.result-item {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+.result-item strong {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* ===================================================
+   Bottom Button: للإطلاع على المزيد من تقاريرك السابقة
+   (Access Previous Self Exams)
+=================================================== */
+.bottom-action-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+.btn-load-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+    padding: 14px 28px;
+    background: var(--white);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 800;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-load-more:hover {
+    background: var(--light-pink);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(145, 70, 100, 0.12);
+}
+
+.btn-load-more:active {
+    transform: translateY(0);
+}
+
+.btn-load-more svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.btn-load-more:hover svg {
+    transform: translateY(2px);
+}
+
+.btn-load-more.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: var(--border);
+    color: var(--muted);
+    background: var(--pale-pink);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ===================================================
+   Modals (النوافذ المنبثقة: تسجيل فحص جديد / تعديل النتيجة)
+=================================================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(73, 51, 62, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background: var(--white);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 680px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 28px;
+    margin: auto;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    transform: translateY(20px) scale(0.97);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-overlay.active .modal-box {
+    transform: translateY(0) scale(1);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .modal-overlay {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .modal-box {
+        max-height: calc(100vh - 20px);
+        padding: 20px 16px;
+        border-radius: 18px;
+    }
+}
+
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.modal-close-btn {
+    background: var(--light-pink);
+    color: var(--primary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.modal-close-btn:hover {
+    background: var(--soft-pink);
+    transform: rotate(90deg);
+}
+
+.form-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 11px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--pale-pink);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    transition: 0.25s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    background: var(--white);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(145, 70, 100, 0.15);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 85px;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.btn-secondary {
+    padding: 10px 22px;
+    border-radius: 12px;
+    background: var(--light-pink);
+    color: var(--primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.25s;
+}
+
+.btn-secondary:hover {
+    background: var(--soft-pink);
+}
+
+.btn-primary-submit {
+    padding: 10px 24px;
+    border-radius: 12px;
+    background: var(--primary);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(145, 70, 100, 0.2);
+    transition: 0.25s;
+}
+
+.btn-primary-submit:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* =========================
+   Toast Notification
+========================= */
+.toast-msg {
+    position: fixed;
+    bottom: 95px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background: var(--primary-dark);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toast-msg.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* =========================
+   Footer (طراز main2.css)
+========================= */
+.footer {
+    min-height: 85px;
+    flex-shrink: 0;
+    padding: 12px 8%;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+}
+
+.footer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.footer-item:hover,
+.footer-item.active {
+    color: var(--primary);
+}
+
+.footer-icon {
+    font-size: 23px;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.brand-footer {
+    color: var(--primary);
+}
+
+.brand-footer .footer-icon {
+    color: #D66F9A;
+}
+
+/* =========================
+   Animations
+========================= */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.exam-card {
+    animation: cardFadeIn 0.5s ease both;
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 768px) {
+    .header {
+        height: 70px;
+        padding: 0 5%;
+    }
+    .brand-name {
+        font-size: 19px;
+    }
+    .main-content {
+        width: 92%;
+        padding: 25px 0 50px 0;
+    }
+    .footer {
+        gap: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0 4%;
+    }
+    .brand-name {
+        font-size: 17px;
+    }
+    .schedule-link {
+        display: none;
+    }
+    .back-link {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+    .exam-card {
+        padding: 16px;
+        border-radius: 18px;
+    }
+    .calendar-icon-box {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+    }
+    .exam-date {
+        font-size: 16px;
+    }
+    .btn-view-result,
+    .btn-edit-result {
+        padding: 7px 14px;
+        font-size: 12px;
+    }
+    .btn-new-exam,
+    .btn-load-more {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+    .footer {
+        min-height: 70px;
+        gap: 0;
+        justify-content: space-around;
+        padding: 8px 4%;
+    }
+}
+
+/* ===== Breast examination form ===== */
+
+#newExamModal {
+    box-sizing: border-box;
+}
+
+#newExamModal *,
+#newExamModal *::before,
+#newExamModal *::after {
+    box-sizing: border-box;
+}
+
+#newExamModal .modal-box {
+    width: min(100%, 680px);
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+}
+
+#formNewExam {
+    width: 100%;
+    min-width: 0;
+}
+
+.exam-form-intro {
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 8px 0 20px;
+}
+
+.exam-side {
+    width: 100%;
+    min-width: 0;
+    margin: 22px 0;
+}
+
+.exam-side-title {
+    color: var(--primary-dark);
+    font-size: 18px;
+    font-weight: 800;
+    padding: 12px 14px;
+    margin: 0 0 12px;
+    background: var(--light-pink);
+    border-radius: 12px;
+    border-right: 4px solid var(--primary);
+}
+
+.exam-section {
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--white);
+    overflow: hidden;
+}
+
+.exam-section summary {
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding: 16px 42px 16px 16px;
+    color: var(--primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--pale-pink);
+}
+
+.exam-section summary::-webkit-details-marker {
+    display: none;
+}
+
+.exam-section summary::before {
+    content: "+";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--primary);
+}
+
+.exam-section[open] summary::before {
+    content: "−";
+}
+
+.exam-section-content {
+    padding: 18px;
+    width: 100%;
+}
+
+.exam-section-content .form-group {
+    margin-bottom: 14px;
+}
+
+.exam-section-content .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.exam-section-content label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--primary-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.exam-section-content .form-select,
+.exam-section-content .form-textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.general-notes {
+    margin-top: 24px;
+}
+
+#newExamModal .modal-footer {
+    position: sticky;
+    bottom: -1px;
+    background: var(--white);
+    padding: 14px 0 2px;
+    z-index: 2;
+}
+
+@media (max-width: 600px) {
+    #newExamModal {
+        padding: 8px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #newExamModal .modal-box {
+        width: 100%;
+        max-width: none;
+        max-height: calc(100dvh - 16px);
+        padding: 18px 14px;
+        border-radius: 18px;
+    }
+
+    #newExamModal .modal-header h3 {
+        font-size: 17px;
+    }
+
+    .exam-section-content {
+        padding: 14px 12px;
+    }
+
+    .exam-section summary {
+        font-size: 13px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    #newExamModal .modal-footer {
+        gap: 8px;
+    }
+
+    #newExamModal .modal-footer button {
+        flex: 1;
+        padding: 11px 8px;
+    }
+}
