@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بصمة وردية | تسجيل الدخول</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="auth-page">
+
+    <main class="auth-container">
+
+        <!-- Brand Section -->
+        <section class="auth-brand">
+
+            <img
+                src="{{ url_for('static', filename='images/logo.png') }}"
+                alt="شعار بصمة وردية"
+                class="auth-logo"
+            >
+
+            <h1>بصمة وردية</h1>
+
+            <p class="auth-tagline">
+                صحتكِ تبدأ بوعيكِ
+            </p>
+
+            <div class="auth-decoration">
+                <span>♡</span>
+            </div>
+
+            <p class="auth-description">
+                مساحة آمنة لزيادة الوعي بصحة الثدي،
+                ومتابعة الفحص الذاتي، والاهتمام بصحتكِ.
+            </p>
+
+        </section>
+
+
+        <!-- Login & Register Section -->
+        <section class="auth-form-panel">
+
+            <!-- Login Form -->
+            <div class="form-box active" id="login-form">
+
+                <form action="">
+
+                    <div class="auth-heading">
+
+                        <span class="auth-eyebrow">
+                            مرحبًا بعودتكِ
+                        </span>
+
+                        <h2>تسجيل الدخول</h2>
+
+                        <p>
+                            سجّلي الدخول لمتابعة رحلتكِ مع بصمة وردية.
+                        </p>
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label for="login-email">
+                            البريد الإلكتروني
+                        </label>
+
+                        <input
+                            id="login-email"
+                            type="email"
+                            name="email"
+                            placeholder="أدخلي بريدك الإلكتروني"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label for="login-password">
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            id="login-password"
+                            type="password"
+                            name="password"
+                            placeholder="أدخلي كلمة المرور"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" name="login">
+                        تسجيل الدخول
+                    </button>
+
+
+                    <p id="login-message" class="auth-message"></p>
+
+
+                    <p class="auth-switch">
+                        ليس لديكِ حساب؟
+                        <a href="#"
+                           onclick="showForm('register-form'); return false;">
+                            إنشاء حساب جديد
+                        </a>
+                    </p>
+
+                </form>
+
+            </div>
+
+
+            <!-- Register Form -->
+            <div class="form-box" id="register-form">
+
+                <form action="">
+
+                    <div class="auth-heading">
+
+                        <span class="auth-eyebrow">
+                            انضمي إلى بصمة وردية
+                        </span>
+
+                        <h2>إنشاء حساب</h2>
+
+                        <p>
+                            ابدئي رحلتكِ نحو وعي أكبر بصحتكِ.
+                        </p>
+
+                    </div>
+
+
+                    <div class="auth-name-fields">
+
+                        <div class="auth-field">
+
+                            <label for="register-first-name">
+                                الاسم الأول
+                            </label>
+
+                            <input
+                                id="register-first-name"
+                                type="text"
+                                name="first name"
+                                placeholder="الاسم الأول"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="auth-field">
+
+                            <label for="register-last-name">
+                                اسم العائلة
+                            </label>
+
+                            <input
+                                id="register-last-name"
+                                type="text"
+                                name="last name"
+                                placeholder="اسم العائلة"
+                                autocomplete="family-name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label for="register-email">
+                            البريد الإلكتروني
+                        </label>
+
+                        <input
+                            id="register-email"
+                            type="email"
+                            name="email"
+                            placeholder="أدخلي بريدك الإلكتروني"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label for="register-password">
+                            كلمة المرور
+                        </label>
+
+                        <input
+                            id="register-password"
+                            type="password"
+                            name="password"
+                            placeholder="أنشئي كلمة مرور"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button type="submit" name="register">
+                        إنشاء حساب جديد
+                    </button>
+
+
+                    <p id="register-message" class="auth-message"></p>
+
+
+                    <p class="auth-switch">
+                        لديكِ حساب بالفعل؟
+                        <a href="#"
+                           onclick="showForm('login-form'); return false;">
+                            تسجيل الدخول
+                        </a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='javascript/script.js') }}"></script>
+
+</body>
+</html>

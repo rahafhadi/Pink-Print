@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تقييم صحة الثدي | بصمة وردية</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #914664;
+            --primary-dark: #71364F;
+            --pink: #D88EAB;
+            --soft-pink: #F5DCE6;
+            --light-pink: #FBEFF3;
+            --pale-pink: #FFF8FA;
+            --text: #49343E;
+            --muted: #927D86;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--pale-pink);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative background */
+
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--soft-pink);
+            opacity: 0.45;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .decoration.one {
+            width: 300px;
+            height: 300px;
+            top: -140px;
+            right: -100px;
+        }
+
+        .decoration.two {
+            width: 230px;
+            height: 230px;
+            bottom: -100px;
+            left: -80px;
+        }
+
+        /* Header */
+
+        .header {
+            width: 100%;
+            padding: 15px 4%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            position: sticky;
+            top: 0;
+        }
+
+        .brand {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .brand img {
+            width: 340px;
+            height: 125px;
+            object-fit: contain;
+            object-position: right center;
+        }
+
+        .header-label {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Main welcome area */
+
+        .welcome {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 50px 20px 45px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome:has(.question-screen[style*="display: flex"]) {
+            padding-top: 20px;
+        }
+
+        .welcome-content {
+            width: 100%;
+            max-width: 760px;
+            text-align: center;
+            animation: fadeUp 1.1s ease both;
+        }
+
+        .welcome-icon {
+            width: 94px;
+            height: 94px;
+            margin: 0 auto 24px;
+            border-radius: 32px;
+            background: linear-gradient(145deg, #F8E4EC, #EFC8D8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 43px;
+            box-shadow: 0 12px 30px rgba(145, 70, 100, 0.10);
+            transform: rotate(-5deg);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 19px;
+            background: var(--light-pink);
+            border: 1px solid #F0D6E0;
+            border-radius: 30px;
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .welcome h1 {
+            font-size: clamp(27px, 5vw, 42px);
+            line-height: 1.7;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 13px;
+        }
+
+        .welcome h1 span {
+            color: var(--pink);
+        }
+
+        .description {
+            max-width: 590px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 2.1;
+        }
+
+        /* Information card */
+
+        .info-card {
+            width: 100%;
+            max-width: 520px;
+            margin: 30px auto 27px;
+            padding: 18px 22px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #F2DDE5;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+            box-shadow: 0 8px 25px rgba(145, 70, 100, 0.04);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .info-item .icon {
+            color: var(--pink);
+            font-size: 19px;
+        }
+
+        /* Start button */
+
+        .start-button {
+            border: none;
+            outline: none;
+            padding: 15px 48px;
+            border-radius: 14px;
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
+            color: var(--white);
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 9px 22px rgba(145, 70, 100, 0.20);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .start-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 13px 28px rgba(145, 70, 100, 0.27);
+        }
+
+        .start-button span {
+            margin-right: 10px;
+        }
+
+        .button-message {
+            margin-top: 13px;
+            color: var(--muted);
+            font-size: 17px;
+            min-height: 24px;
+        }
+
+        /* Medical disclaimer */
+
+        .disclaimer {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 13px 18px;
+            border-right: 3px solid var(--pink);
+            background: rgba(245, 220, 230, 0.35);
+            border-radius: 8px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.9;
+            text-align: right;
+        }
+
+        /* Footer */
+
+        .footer {
+            text-align: center;
+            padding: 17px;
+            color: #B49EA8;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Question Screen */
+
+        .question-screen {
+            width: 100%;
+            min-height: auto;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 25px 20px 50px;
+            animation: fadeUp 0.9s ease;
+
+        }
+
+        .question-content {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+        }
+
+        .question-number {
+            display: inline-block;
+            color: var(--primary);
+            background: var(--soft-pink);
+            padding: 9px 22px;
+            border-radius: 30px;
+            font-size: 16px;
+            margin-bottom: 22px;
+        }
+
+        .question-content h2 {
+            color: var(--text);
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .question-description {
+            color: var(--muted);
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .answer-options button {
+            width: 100%;
+            padding: 18px 24px;
+            border: 1.5px solid #EBD3DD;
+            border-radius: 16px;
+            background: white;
+            color: var(--text);
+            font-family: 'Cairo', sans-serif;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+        }
+
+        .answer-options button:hover {
+            border-color: var(--primary);
+            background: var(--light-pink);
+            transform: translateY(-2px);
+        }
+
+        .answer-options button.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(145, 70, 100, 0.18);
+        }
+
+        .next-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            width: 100%;
+            max-width: 250px;
+            margin: 30px auto 0;
+            padding: 15px 25px;
+
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 14px;
+
+            font-family: 'Cairo', sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(145, 70, 100, 0.18);
+        }
+
+        .next-button:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .next-button:disabled {
+            background: #D8C4CD;
+            color: white;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .next-button span {
+            font-size: 20px;
+        }
+
+        .eligibility-message {
+            background: #FFF5F8;
+            border: 1px solid #F0D9E3;
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+            margin-top: 25px;
+            animation: fadeUp 0.5s ease;
+        }
+
+        .eligibility-message h3 {
+            color: var(--primary);
+            font-size: 21px;
+            margin-bottom: 15px;
+        }
+
+        .eligibility-message p {
+            color: var(--text);
+            font-size: 16px;
+            line-height: 1.9;
+        }
+
+        .eligibility-message .medical-note {
+            background: #F8E8EF;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 18px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .eligibility-message .medical-advice {
+            margin-top: 18px;
+            font-weight: 700;
+        }
+
+        .age-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            margin: 35px auto;
+            padding: 25px;
+            max-width: 360px;
+            background: #FFF7FA;
+            border: 1px solid #F1DCE5;
+            border-radius: 22px;
+        }
+
+        .age-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 1.5px solid #EBC6D6;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #FFFFFF, #F9eaf0);
+            color: #A94D73;
+            font-size: 40px;
+            font-weight: 400;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(173, 82, 121, 0.10);
+            transition: all 0.25s ease;
+        }
+
+        .age-control:hover {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #c45c83;
+            font-size: 45px;
+            font-weight: 600;
+            border-color: #c45c83;
+            transform: scale(1);
+            box-shadow: 0 5px 14px rgba(173, 82, 121, 0.22);
+
+        }
+
+        .age-control:active {
+            transform: scale(1);
+        }
+
+        .age-value {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .age-value input {
+            width: 95px;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #B34F78;
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            font-family: inherit;
+        }
+
+        .age-value input::-webkit-inner-spin-button,
+        .age-value input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .age-value input {
+            -moz-appearance: textfield;
+        }
+
+        .age-value span {
+            color: #987786;
+            font-size: 16px;
+        }
+
+        /* Progress Bar */
+
+        .progress-container {
+            width: 100%;
+            margin-bottom: 35px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 9px;
+            background: #F3E3EA;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 10%;
+            height: 100%;
+            background: linear-gradient(90deg, #D982A5, #AD5279);
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .home-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 22px;
+            padding: 13px 28px;
+            background: #AD5279;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: #913E63;
+            transform: translateY(-2px);
+        }
+
+        /* Animation */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 16px 5%;
+            }
+
+            .brand img {
+                width: 280px;
+                height: 105px;
+                object-fit: contain;
+            }
+
+            .header-label {
+                font-size: 16px;
+            }
+
+            .welcome {
+                padding: 25px 20px 40px;
+            }
+
+            .welcome-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 36px;
+                border-radius: 27px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .info-card {
+                gap: 15px;
+                padding: 15px 10px;
+                flex-wrap: wrap;
+            }
+
+            .info-item {
+                font-size: 16px;
+            }
+
+            .start-button {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .disclaimer {
+                font-size: 16px;
+            }
+            .question-content h2 {
+                font-size: 24px;
+            }
+
+            .answer-options button {
+                padding: 15px;
+                font-size: 15px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .question-content{
+            transform: translateY(-45px);
+
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="decoration one"></div>
+    <div class="decoration two"></div>
+
+    <header class="header">
+
+        <a href="/main" class="brand">
+            <img
+                src="{{ url_for('static', filename='images/logo.png') }}"
+                alt="بصمة وردية"
+            >
+        </a>
+
+        <span class="header-label">
+            تقييم عوامل الخطورة
+        </span>
+
+    </header>
+
+
+    <main class="welcome">
+
+        <div class="welcome-content">
+
+            <span class="eyebrow">
+                صحتكِ تستحق اهتمامكِ
+            </span>
+
+            <h1>
+                رحلتكِ نحو فهم أفضل
+                <br>
+                <span>لصحتك</span>
+            </h1>
+
+            <p class="description">
+                كل امرأة تستحق أن تفهم جسدها بشكل أفضل.
+                أجيبي عن بعض الأسئلة المتعلقة بصحتكِ وتاريخكِ
+                الطبي، لنساعدكِ على التعرف على بعض عوامل
+                الخطورة وتعزيز وعيكِ بصحة الثدي.
+            </p>
+
+
+            <div class="info-card">
+
+                <div class="info-item">
+                    <span class="icon">◷</span>
+                    <span>3–5 دقائق</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="icon">♡</span>
+                    <span>أسئلة بسيطة</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="icon">✧</span>
+                    <span>بياناتكِ بسرية</span>
+                </div>
+
+            </div>
+
+
+            <button
+                class="start-button"
+                type="button"
+                onclick="startAssessment()"
+            >
+                ابدئي التقييم
+                <span>←</span>
+            </button>
+
+            <p class="button-message" id="button-message"></p>
+
+
+            <div class="disclaimer">
+                <strong>تنويه طبي:</strong>
+                هذا التقييم أداة أولية للتوعية وفهم بعض عوامل
+                الخطورة، ولا يُعد تشخيصًا طبيًا أو بديلًا عن
+                استشارة الطبيب المختص.
+            </div>
+
+        </div>
+
+        <section class="question-screen" id="question-screen" style="display: none;">
+
+            <div class="question-content">
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-info">
+                        <span>مدى التقدم</span>
+                        <span id="progress-text">10%</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+                <span class="question-number">
+                    القسم الأول — التحقق من أهلية التقييم
+                </span>
+
+                <p class="question-description">
+                    Patient Eligibility Reminder
+                </p>
+
+                <h2 id="question-title">
+هل سبق تشخيصكِ بسرطان الثدى  أو سرطان القنوات الموضعى ( فى قنوات الحليب فى الثدى ) DCIS 
+أو سرطان الفصيصات الموضعى( فى الغدد المفرزة للحليب)
+أو تلقيتِ علاجًا إشعاعيًا سابقًا على منطقة الصدر لعلاج ليمفوما هودجيكن ( هو نوع من سرطان الخلايا الليمفاوية)                </h2>
+
+                <div class="answer-options" id="answer-options">
+                    <button type="button">نعم</button>
+                    <button type="button">لا</button>
+                </div>
+
+                <button
+                    type="button"
+                    class="next-button"
+                    id="next-button"
+                    disabled
+                >
+                    التالي
+                    <span>←</span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        © 2026 بصمة وردية — جميع الحقوق محفوظة.
+    </footer>
+
+</div>
+
+<script>
+    // فتح شاشة التقييم
+    function startAssessment() {
+        const welcome = document.querySelector(".welcome-content");
+        const screen = document.getElementById("question-screen");
+
+        if (welcome && screen) {
+            welcome.style.display = "none";
+            screen.style.display = "flex";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        let currentQuestion = 1;
+        const answers = {};
+
+        const title = document.getElementById("question-title");
+        const number = document.querySelector(".question-number");
+        const description = document.querySelector(".question-description");
+        const optionsContainer = document.getElementById("answer-options");
+        const nextButton = document.getElementById("next-button");
+        const progressFill = document.getElementById("progress-fill");
+        const progressText = document.getElementById("progress-text");
+
+        function updateProgress(questionNumber) {
+            const totalQuestions = 10;
+            const progress = (questionNumber / totalQuestions) * 100;
+
+            progressFill.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        if (!title || !number || !description || !optionsContainer || !nextButton) {
+            console.error("Assessment elements are missing.");
+            return;
+        }
+
+        // اختيار الإجابة
+        function selectAnswer(button) {
+            optionsContainer.querySelectorAll("button").forEach(option => {
+                option.classList.remove("selected");
+            });
+
+            button.classList.add("selected");
+            answers[currentQuestion] = button.textContent.trim();
+            nextButton.disabled = false;
+        }
+
+        // ربط أزرار الإجابة
+        function addAnswerListeners() {
+            optionsContainer.querySelectorAll("button").forEach(button => {
+                button.addEventListener("click", () => {
+                    selectAnswer(button);
+                });
+            });
+        }
+
+        // السؤال الثاني
+        function showQuestionTwo() {
+            currentQuestion = 2;
+            updateProgress(2);
+            number.textContent = "القسم الأول — التحقق من أهلية التقييم";
+            title.textContent =
+                "هل ثبت وجود طفرة جينية لديكِ في جين BRCA1 أو BRCA2، أو تم تشخيصكِ بمتلازمة وراثية قد ترتبط بزيادة خطر الإصابة بسرطان الثدي؟";
+
+            description.textContent = "اختاري الإجابة المناسبة.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">نعم</button>
+                <button type="button">لا</button>
+                <button type="button">لا أعلم</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // رسالة التوجيه الطبي
+        function showEligibilityMessage(isGeneticRisk) {
+            number.textContent = "تنبيه طبي";
+
+            title.textContent = isGeneticRisk
+                ? "قد تحتاجين إلى تقييم متخصص"
+                : "شكرًا لمشاركتكِ";
+
+            description.textContent =
+                "سلامتكِ تهمنا، ونحرص على توجيهكِ للتقييم الأنسب لحالتكِ.";
+
+            optionsContainer.innerHTML = `
+                <div class="eligibility-message">
+                    <h3>${isGeneticRisk ? "التقييم المتخصص هو الأنسب" : "لماذا لا يمكننا استكمال التقييم؟"}</h3>
+                    <p>
+                        ${isGeneticRisk
+                            ? "وجود طفرة جينية أو متلازمة وراثية قد يستلزم تقييمًا مختلفًا عن نموذج Gail. يُرجى استشارة طبيب مختص."
+                            : "بناءً على إجابتكِ، لا يناسبكِ نموذج Gail لتقدير خطر الإصابة بسرطان الثدي. يُرجى استشارة طبيب مختص."
+                        }
+                    </p>
+                    <p class="medical-note">
+                        هذا لا يعني بالضرورة وجود إصابة بالسرطان.
+                    </p>
+                </div>
+            `;
+
+            nextButton.style.display = "none";
+        }
+
+        // السؤال الثالث: العمر
+        function showQuestionThree() {
+            currentQuestion = 3;
+            updateProgress(3);
+
+            number.textContent = "القسم الثاني — البيانات الشخصية";
+            title.textContent = "كم يبلغ عمركِ؟";
+            description.textContent = "اختاري عمركِ بالسنوات.";
+
+            optionsContainer.innerHTML = `
+                <div class="age-selector">
+                    <button type="button" id="age-minus" class="age-control">−</button>
+
+                    <div class="age-value">
+                        <input
+                            type="number"
+                            id="user-age"
+                            min="18"
+                            max="85"
+                            value="20"
+                        >
+                        <span>سنة</span>
+                    </div>
+
+                    <button type="button" id="age-plus" class="age-control">+</button>
+                </div>
+            `;
+
+            const ageInput = document.getElementById("user-age");
+            const minusButton = document.getElementById("age-minus");
+            const plusButton = document.getElementById("age-plus");
+
+            function updateAge() {
+                const age = Number(ageInput.value);
+
+                if (age >= 18 && age <= 85 && ageInput.value !== "") {
+                    answers[3] = age;
+                    nextButton.disabled = false;
+                } else {
+                    delete answers[3];
+                    nextButton.disabled = true;
+                }
+            }
+
+            minusButton.addEventListener("click", () => {
+                const age = Number(ageInput.value) || 20;
+
+                if (age > 18) {
+                    ageInput.value = age - 1;
+                    updateAge();
+                }
+            });
+
+            plusButton.addEventListener("click", () => {
+                const age = Number(ageInput.value) || 20;
+
+                if (age < 85) {
+                    ageInput.value = age + 1;
+                    updateAge();
+                }
+            });
+
+            ageInput.addEventListener("input", updateAge);
+            updateAge();
+        }
+
+        // السؤال الرابع: الخلفية السكانية
+        function showQuestionFour() {
+            currentQuestion = 4;
+            updateProgress(4);
+
+            number.textContent = "القسم الثاني — البيانات الشخصية";
+            title.textContent = "ما خلفيتكِ السكانية؟";
+            description.textContent =
+                "اختاري الإجابة الأقرب إليكِ.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">مصرية</button>
+                <button type="button">عربية من دولة أخرى</button>
+                <button type="button">أخرى</button>
+                <button type="button">أفضل عدم الإجابة</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // السؤال الخامس: الخزعات الحميدة
+        function showQuestionFive() {
+            currentQuestion = 5;
+            updateProgress(5);
+
+            number.textContent = "القسم الثالث — التاريخ المرضي";
+            title.textContent =
+                "هل سبق أن خضعتِ لخزعة في الثدي وكانت نتيجتها حميدة?";
+
+            description.textContent = "اختاري الإجابة المناسبة.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">نعم</button>
+                <button type="button">لا</button>
+                <button type="button">لا أعلم</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // السؤال السادس: عدد الخزعات
+        function showQuestionSix() {
+            currentQuestion = 6;
+            updateProgress(6);
+
+            number.textContent = "القسم الثالث — التاريخ المرضي";
+            title.textContent =
+                "كم عدد الخزعات الحميدة التي خضعتِ لها؟";
+
+            description.textContent = "اختاري الإجابة المناسبة.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">خزعة واحدة</button>
+                <button type="button">خزعتان أو أكثر</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // السؤال السابع: التضخم غير النمطي
+        function showQuestionSeven() {
+            currentQuestion = 7;
+            updateProgress(7);
+
+            number.textContent = "القسم الثالث — التاريخ المرضي";
+            title.textContent =
+                "هل أظهرت أي خزعة سابقة وجود تضخم غير نمطي (Atypical Hyperplasia)؟";
+
+            description.textContent = "اختاري الإجابة المناسبة.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">نعم</button>
+                <button type="button">لا</button>
+                <button type="button">لا أعلم</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // السؤال الثامن: سن بداية الدورة الشهرية
+        function showQuestionEight() {
+            currentQuestion = 8;
+            updateProgress(8);
+
+            number.textContent = "القسم الرابع — التاريخ الإنجابي";
+            title.textContent =
+                "في أي عمر بدأت دورتكِ الشهرية لأول مرة؟";
+
+            description.textContent = "اختاري الفئة العمرية المناسبة.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">7–11 سنة</button>
+                <button type="button">12–13 سنة</button>
+                <button type="button">14 سنة أو أكثر</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // السؤال التاسع: العمر عند أول ولادة حية
+        function showQuestionNine() {
+            currentQuestion = 9;
+            updateProgress(9);
+
+            number.textContent = "القسم الرابع — التاريخ الإنجابي";
+            title.textContent =
+                "كم كان عمركِ عند أول ولادة حية؟";
+
+            description.textContent =
+                "إذا لم يسبق لكِ الإنجاب، اختاري أول إجابة.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">لم يسبق لي الإنجاب</button>
+                <button type="button">أقل من 20 سنة</button>
+                <button type="button">20–24 سنة</button>
+                <button type="button">25–29 سنة</button>
+                <button type="button">30 سنة أو أكثر</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // السؤال العاشر: التاريخ العائلي
+        function showQuestionTen() {
+            currentQuestion = 10;
+            updateProgress(10);
+
+            number.textContent = "القسم الخامس — التاريخ العائلي";
+            title.textContent =
+                "كم عدد قريبات الدرجة الأولى المصابات بسرطان الثدي؟";
+
+            description.textContent =
+                "يشمل ذلك الأم والأخوات والبنات.";
+
+            optionsContainer.innerHTML = `
+                <button type="button">لا يوجد</button>
+                <button type="button">واحدة</button>
+                <button type="button">اثنتان أو أكثر</button>
+                <button type="button">لا أعلم</button>
+            `;
+
+            nextButton.disabled = true;
+            addAnswerListeners();
+        }
+
+        // الشاشة الختامية
+        
+        async function showCompletionScreen() {
+            number.textContent = "اكتمل التقييم";
+
+            title.textContent = "شكرًا لثقتكِ بنا!";
+
+            description.textContent =
+                "اكتملت إجاباتكِ، جارٍ حفظ بيانات التقييم...";
+
+            nextButton.style.display = "none";
+
+            optionsContainer.innerHTML = `
+                <div class="eligibility-message">
+                    <h3>جارٍ حفظ التقييم...</h3>
+                    <p>من فضلك انتظري قليلًا.</p>
+                </div>
+            `;
+
+            async function saveAssessment() {
+                try {
+                    const response = await fetch("/api/risk-assessment", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            answers: answers
+                        })
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok || !result.success) {
+                        throw new Error(
+                            result.message || "حدث خطأ أثناء حفظ التقييم."
+                        );
+                    }
+
+                    optionsContainer.innerHTML = `
+                        <div class="eligibility-message">
+                            <h3>تم حفظ التقييم بنجاح ✓</h3>
+
+                            <p>
+                                شكرًا لمشاركتكِ. تم حفظ إجاباتكِ
+                                بنجاح ويمكنكِ الرجوع إليها لاحقًا.
+                            </p>
+
+                            <p class="medical-note">
+                                هذا التقييم لا يُغني عن استشارة الطبيب
+                                ولا يُعد تشخيصًا طبيًا.
+                            </p>
+
+                            <a href="/main" class="home-button">
+                                العودة إلى الصفحة الرئيسية
+                                <span>←</span>
+                            </a>
+
+                        </div>
+                    `;
+
+                    description.textContent =
+                        "تم استكمال التقييم وحفظ إجاباتكِ بنجاح.";
+
+                    console.log("Assessment ID:", result.assessment_id);
+
+                } catch (error) {
+                    console.error("Save error:", error);
+
+                    optionsContainer.innerHTML = `
+                        <div class="eligibility-message">
+                            <h3>تعذّر حفظ التقييم</h3>
+
+                            <p>
+                                ${error.message}
+                            </p>
+
+                            <button type="button" id="retry-save">
+                                إعادة المحاولة
+                            </button>
+                        </div>
+                    `;
+
+                    document.getElementById("retry-save")
+                        .addEventListener("click", saveAssessment);
+                }
+            }
+
+            await saveAssessment();
+        }
+
+
+        // ربط أزرار السؤال الأول
+        addAnswerListeners();
+
+        // زر التالي
+        nextButton.addEventListener("click", function () {
+
+            if (!answers[currentQuestion]) return;
+
+            if (currentQuestion === 1) {
+                if (answers[1] === "نعم") {
+                    showEligibilityMessage(false);
+                    return;
+                }
+
+                if (answers[1] === "لا") {
+                    showQuestionTwo();
+                    return;
+                }
+            }
+
+            if (currentQuestion === 2) {
+                if (answers[2] === "نعم") {
+                    showEligibilityMessage(true);
+                    return;
+                }
+
+                if (answers[2] === "لا" || answers[2] === "لا أعلم") {
+                    showQuestionThree();
+                    return;
+                }
+            }
+
+            if (currentQuestion === 3) {
+                showQuestionFour();
+                return;
+            }
+
+            if (currentQuestion === 4) {
+                showQuestionFive();
+                return;
+            }
+
+            if (currentQuestion === 5) {
+                if (answers[5] === "نعم") {
+                    showQuestionSix();
+                } else {
+                    showQuestionSeven();
+                }
+                return;
+            }
+
+            if (currentQuestion === 6) {
+                showQuestionSeven();
+                return;
+            }
+
+            if (currentQuestion === 7) {
+                showQuestionEight();
+                return;
+            }
+
+            if (currentQuestion === 8) {
+                showQuestionNine();
+                return;
+            }
+
+            if (currentQuestion === 9) {
+                showQuestionTen();
+                return;
+            }
+
+            if (currentQuestion === 10) {
+                showCompletionScreen();
+                return;
+            }
+
+        });
+
+    });
+</script>
+
+       
+
+    </body>
+</html>

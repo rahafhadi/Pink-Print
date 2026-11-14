@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تفاصيل التقرير | بصمة وردية</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/main2.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/report_details.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Header -->
+    <header class="header">
+
+        <a href="/main" class="brand">
+            <img
+                src="{{ url_for('static', filename='images/logo.png') }}"
+                alt="بصمة وردية"
+                class="brand-logo"
+            >
+        </a>
+
+        <a href="/reports" class="schedule-link">
+            <span>←</span>
+            <span>العودة للتقارير</span>
+        </a>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="report-details-content">
+
+        {% if report_type == 'self_exam' %}
+
+        <section class="report-details-heading">
+            <span class="eyebrow">SELF-EXAMINATION DETAILS</span>
+            <h1>تفاصيل الفحص الذاتي</h1>
+            <p>مراجعة الملاحظات التي سجلتِها أثناء الفحص الذاتي.</p>
+        </section>
+
+        <section class="report-overview">
+
+            <div class="report-top">
+                <div class="report-title">
+                    <div>
+                        <h3>سجل الفحص الذاتي للثدي</h3>
+                        <p>REPORT #{{ exam.id }}</p>
+                    </div>
+                </div>
+
+                <span class="report-status">مسجل</span>
+            </div>
+
+            <div class="report-info">
+                <span class="report-date">
+                    تاريخ الفحص: {{ exam.exam_date }}
+                </span>
+
+                <span class="report-date">
+                    رقم التقرير: #{{ exam.id }}
+                </span>
+            </div>
+
+        </section>
+
+        {% set regions = [
+            ('الثدي الأيمن - الربع العلوي الخارجي', [
+                ('right_uo_lump', 'كتلة أو سماكة جديدة'),
+                ('right_uo_pain', 'ألم أو حساسية'),
+                ('right_uo_skin', 'تغير في الجلد'),
+                ('right_uo_shape', 'تورم أو تغير في الشكل'),
+                ('right_uo_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيمن - الربع العلوي الداخلي', [
+                ('right_ui_lump', 'كتلة أو سماكة جديدة'),
+                ('right_ui_pain', 'ألم أو حساسية'),
+                ('right_ui_skin', 'تغير في الجلد'),
+                ('right_ui_shape', 'تورم أو تغير في الشكل'),
+                ('right_ui_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيمن - الربع السفلي الخارجي', [
+                ('right_lo_lump', 'كتلة أو سماكة جديدة'),
+                ('right_lo_pain', 'ألم أو حساسية'),
+                ('right_lo_skin', 'تغير في الجلد'),
+                ('right_lo_shape', 'تورم أو تغير في الشكل'),
+                ('right_lo_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيمن - الربع السفلي الداخلي', [
+                ('right_li_lump', 'كتلة أو سماكة جديدة'),
+                ('right_li_pain', 'ألم أو حساسية'),
+                ('right_li_skin', 'تغير في الجلد'),
+                ('right_li_shape', 'تورم أو تغير في الشكل'),
+                ('right_li_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيمن - الحلمة والهالة', [
+                ('right_nipple_discharge', 'إفرازات من الحلمة'),
+                ('right_nipple_inversion', 'تغير اتجاه الحلمة أو انقلابها'),
+                ('right_nipple_skin', 'تغير في جلد الحلمة أو الهالة'),
+                ('right_nipple_pain', 'ألم أو حساسية'),
+                ('right_nipple_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيمن - منطقة الإبط', [
+                ('right_axilla_lump', 'كتلة أو تورم'),
+                ('right_axilla_pain', 'ألم أو حساسية'),
+                ('right_axilla_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيسر - الربع العلوي الخارجي', [
+                ('left_uo_lump', 'كتلة أو سماكة جديدة'),
+                ('left_uo_pain', 'ألم أو حساسية'),
+                ('left_uo_skin', 'تغير في الجلد'),
+                ('left_uo_shape', 'تورم أو تغير في الشكل'),
+                ('left_uo_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيسر - الربع العلوي الداخلي', [
+                ('left_ui_lump', 'كتلة أو سماكة جديدة'),
+                ('left_ui_pain', 'ألم أو حساسية'),
+                ('left_ui_skin', 'تغير في الجلد'),
+                ('left_ui_shape', 'تورم أو تغير في الشكل'),
+                ('left_ui_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيسر - الربع السفلي الخارجي', [
+                ('left_lo_lump', 'كتلة أو سماكة جديدة'),
+                ('left_lo_pain', 'ألم أو حساسية'),
+                ('left_lo_skin', 'تغير في الجلد'),
+                ('left_lo_shape', 'تورم أو تغير في الشكل'),
+                ('left_lo_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيسر - الربع السفلي الداخلي', [
+                ('left_li_lump', 'كتلة أو سماكة جديدة'),
+                ('left_li_pain', 'ألم أو حساسية'),
+                ('left_li_skin', 'تغير في الجلد'),
+                ('left_li_shape', 'تورم أو تغير في الشكل'),
+                ('left_li_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيسر - الحلمة والهالة', [
+                ('left_nipple_discharge', 'إفرازات من الحلمة'),
+                ('left_nipple_inversion', 'تغير اتجاه الحلمة أو انقلابها'),
+                ('left_nipple_skin', 'تغير في جلد الحلمة أو الهالة'),
+                ('left_nipple_pain', 'ألم أو حساسية'),
+                ('left_nipple_notes', 'تفاصيل إضافية')
+            ]),
+            ('الثدي الأيسر - منطقة الإبط', [
+                ('left_axilla_lump', 'كتلة أو تورم'),
+                ('left_axilla_pain', 'ألم أو حساسية'),
+                ('left_axilla_notes', 'تفاصيل إضافية')
+            ])
+        ] %}
+
+        {% set value_labels = {
+            'yes': 'لاحظت',
+            'no': 'لم ألاحظ',
+            'unsure': 'غير متأكدة'
+        } %}
+
+        <section class="answers-section">
+
+            <h2 class="answers-heading">ملاحظات الفحص المسجلة</h2>
+
+            {% for region_title, fields in regions %}
+
+                {% set ns = namespace(has_data=false) %}
+
+                {% for key, label in fields %}
+                    {% if exam.observations.get(key) %}
+                        {% set ns.has_data = true %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if ns.has_data %}
+
+                    <h3>{{ region_title }}</h3>
+
+                    {% for key, label in fields %}
+
+                        {% set value = exam.observations.get(key, '') %}
+
+                        {% if value %}
+
+                            <article class="answer-card">
+
+                                <div class="answer-question">
+                                    <h3>{{ label }}</h3>
+                                </div>
+
+                                <div class="answer-value">
+                                    <span>الملاحظة المسجلة</span>
+
+                                    <strong>
+                                        {% if key.endswith('_notes') %}
+                                            {{ value }}
+                                        {% else %}
+                                            {{ value_labels.get(value, value) }}
+                                        {% endif %}
+                                    </strong>
+                                </div>
+
+                            </article>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endfor %}
+
+        </section>
+
+        {% if exam.notes %}
+
+        <section class="answers-section">
+            <h2 class="answers-heading">ملاحظات عامة</h2>
+
+            <article class="answer-card">
+                <div class="answer-value">
+                    <strong>{{ exam.notes }}</strong>
+                </div>
+            </article>
+        </section>
+
+        {% endif %}
+
+        <div class="details-medical-note">
+            هذا السجل يوثق الملاحظات أثناء الفحص الذاتي، ولا يُعد تشخيصًا طبيًا
+            أو وسيلة لاستبعاد الإصابة. عند ملاحظة تغير جديد أو مستمر،
+            يُنصح باستشارة الطبيب المختص.
+        </div>
+
+        {% else %}
+
+
+        <section class="report-details-heading">
+
+            <span class="eyebrow">REPORT DETAILS</span>
+
+            <h1>تفاصيل التقييم</h1>
+
+            <p>
+                مراجعة إجاباتكِ المسجلة في تقييم عوامل خطورة سرطان الثدي.
+            </p>
+
+        </section>
+
+
+        <!-- Report Overview -->
+        <section class="report-overview">
+
+            <div class="report-top">
+
+                <div class="report-title">
+
+                    <div>
+                        <h3>تقييم عوامل خطورة سرطان الثدي</h3>
+                        <p>REPORT #{{ report.id }}</p>
+                    </div>
+
+                </div>
+
+                <span class="report-status">
+                    {% if report.status == 'completed' %}
+                        مكتمل
+                    {% else %}
+                        {{ report.status }}
+                    {% endif %}
+                </span>
+
+            </div>
+
+            <div class="report-info">
+
+                <span class="report-date">
+                    تاريخ التقييم: {{ report.created_at }}
+                </span>
+
+                <span class="report-date">
+                    رقم التقرير: #{{ report.id }}
+                </span>
+
+            </div>
+
+        </section>
+
+        
+        <!-- Gail Risk Result -->
+        {% if report.gail_result %}
+        {% set current_age = report.answers['3'] | int %}
+
+        <section class="gail-result-section">
+
+            <h2 class="gail-result-heading">
+                نتيجة تقييم خطر الإصابة
+            </h2>
+
+            <div class="gail-result-card">
+
+                <p class="gail-result-label">
+                    خطر الإصابة خلال السنوات الخمس القادمة
+                </p>
+
+                <div class="gail-risk-value">
+                    {{ "%.2f"|format(report.gail_result.absolute_risk_percent) }}%
+                </div>
+
+                <p class="gail-result-description">
+                    تقدير الخطر التراكمي خلال الفترة المحددة
+                </p>
+
+                <div class="gail-result-divider"></div>
+
+                <div class="gail-result-details">
+
+                    <div>
+                        <span>Relative Risk</span>
+                        <strong>
+                            {{ "%.2f"|format(
+                                report.gail_result.relative_risk_under_50
+                                if current_age < 50
+                                else report.gail_result.relative_risk_50_plus
+                            ) }}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>فترة التقييم</span>
+                        <strong>5 سنوات</strong>
+                    </div>
+
+                </div>
+
+                <p class="gail-reference">
+                    المرجع السكاني:
+                    {{ report.gail_result.reference_population }}
+                </p>
+
+                <div class="gail-medical-warning">
+                    <strong>تنبيه طبي مهم</strong>
+                    <p>
+                        هذه نتيجة تجريبية باستخدام معاملات ومعدلات
+                        مرجعية أمريكية. لم يتم التحقق من صلاحية النموذج
+                        سريريًا للنساء المصريات، ولا تُستخدم للتشخيص
+                        أو اتخاذ قرارات طبية.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        {% else %}
+
+        <section class="gail-result-section">
+            <div class="gail-medical-warning">
+                <strong>لا تتوفر نتيجة Gail لهذا التقييم</strong>
+                <p>
+                    لم يتم حساب نتيجة Gail لهذا التقييم.
+                </p>
+            </div>
+        </section>
+
+        {% endif %}
+
+
+        <!-- Answers -->
+        <section class="answers-section">
+
+            <h2 class="answers-heading">إجاباتكِ</h2>
+
+            {% set question_labels = {
+                '1': 'تاريخ مرضي سابق أو علاج إشعاعي للصدر',
+                '2': 'وجود طفرة جينية أو متلازمة وراثية',
+                '3': 'العمر الحالي',
+                '4': 'الخلفية السكانية',
+                '5': 'تاريخ سابق لأخذ عينة حميدة من الثدي',
+                '6': 'عدد العينات الحميدة',
+                '7': 'وجود تضخم غير نمطي',
+                '8': 'سن بدء الدورة الشهرية',
+                '9': 'سن أول ولادة حية',
+                '10': 'تاريخ عائلي للإصابة بسرطان الثدي'
+            } %}
+
+            {% for question, answer in report.answers.items() %}
+
+                <article
+                    class="answer-card"
+                    style="animation-delay: {{ loop.index0 * 0.08 }}s;"
+                >
+
+                    <div class="answer-question">
+
+                        <div class="answer-number">
+                            {{ "%02d"|format(loop.index) }}
+                        </div>
+
+                        <h3>
+                            {{ question_labels.get(question|string, 'السؤال ' ~ question) }}
+                        </h3>
+
+                    </div>
+
+                    <div class="answer-value">
+
+                        <span>الإجابة المسجلة</span>
+
+                        <strong>{{ answer }}</strong>
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+        </section>
+
+
+        <!-- Medical Note -->
+        <div class="details-medical-note">
+
+            هذا التقييم لا يُعد تشخيصًا طبيًا،
+            ولا يُغني عن استشارة الطبيب المختص.
+
+        </div>
+        {% endif %}
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <a href="#" class="footer-item">
+            ♙
+            <span>حسابي</span>
+        </a>
+
+        <a href="#" class="footer-item">
+            ⚙
+            <span>الإعدادات</span>
+        </a>
+
+        <a href="/main" class="footer-item brand-footer">
+            ♡
+            <span>بصمة وردية</span>
+        </a>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
+

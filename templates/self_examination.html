@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفحص الذاتي | مِراي</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/self_examination.css') }}">
+</head>
+
+<body>
+
+    <header class="page-header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="مِراي" class="logo">
+
+        <a href="/main" class="back-button">
+            العودة للرئيسية
+        </a>
+    </header>
+
+    <main class="examination-container">
+
+        <section class="intro-section">
+            <span class="section-label">BREAST AWARENESS GUIDE</span>
+            <h1>رحلتك للتعرّف على الفحص الذاتي</h1>
+            <p>
+                تابعي الخطوات واحدة تلو الأخرى، وخدي وقتك في مشاهدة
+                كل فيديو وقراءة التعليمات المصاحبة له.
+            </p>
+        </section>
+
+        <section class="video-card">
+
+            <div class="progress-info">
+                <span id="stepTitle">الخطوة الأولى</span>
+                <span id="stepCounter">1 / 9</span>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="video-wrapper">
+                <video id="stepVideo"
+                       controls
+                       playsinline
+                       preload="metadata">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+
+            <div class="step-description">
+                <h2 id="descriptionTitle">الخطوة الأولى</h2>
+                <p id="stepDescription">
+                    سيظهر هنا وصف الخطوة الحالية.
+                </p>
+            </div>
+
+            <div class="navigation-buttons">
+                <button id="prevStep" type="button" disabled>
+                    الخطوة السابقة
+                </button>
+
+                <button id="nextStep" type="button">
+                    الخطوة التالية
+                </button>
+            </div>
+
+        </section>
+
+        <section class="completion-section" id="completionSection" hidden>
+            <h2>وصلتي لنهاية الخطوات 🩷</h2>
+            <p>
+                يمكنك الآن الانتقال إلى صفحة تسجيل الفحص
+                وإضافة ملاحظاتك الشخصية.
+            </p>
+
+            <a href="/tracker?new=1" class="complete-button">
+                الانتقال لتسجيل فحص جديد
+            </a>
+        </section>
+
+        <p class="medical-note">
+            هذا الدليل للتوعية بالتغيرات التي قد تلاحظينها،
+            ولا يُعد وسيلة لتشخيص سرطان الثدي أو بديلًا عن
+            التقييم الطبي والفحوصات الموصى بها.
+        </p>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='javascript/self_examination.js') }}"></script>
+
+</body>
+</html>

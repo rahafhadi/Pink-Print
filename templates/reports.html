@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تقاريري السابقة | بصمة وردية</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/main2.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/reports.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Header -->
+    <header class="header">
+
+        <a href="/main" class="brand">
+            <img
+                src="{{ url_for('static', filename='images/logo.png') }}"
+                alt="بصمة وردية"
+                class="brand-logo"
+            >
+        </a>
+
+        <a href="/main" class="schedule-link">
+            <span class="schedule-icon">⌂</span>
+            <span>الصفحة الرئيسية</span>
+        </a>
+
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="reports-content">
+
+        <section class="reports-heading">
+
+            <span class="eyebrow">MY HEALTH JOURNEY</span>
+
+            <h1>تقاريري السابقة</h1>
+
+            <p>
+                هنا يمكنكِ متابعة سجل تقييماتكِ السابقة
+                والرجوع إلى بياناتكِ الصحية في أي وقت.
+            </p>
+
+        </section>
+
+
+        <!-- Summary -->
+        
+        {% set total_reports = assessments|length + self_exams|length %}
+
+        {% set completed_reports =
+            assessments|selectattr('status', 'equalto', 'completed')|list|length
+        %}
+
+        <section class="reports-summary">
+
+            <div class="summary-card">
+                <span>إجمالي التقارير</span>
+                <strong>{{ total_reports }}</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>تقييمات Gail المكتملة</span>
+                <strong>{{ completed_reports }}</strong>
+            </div>
+
+        </section>
+
+        <!-- Reports List -->
+        
+        <section class="reports-list">
+
+            <div class="reports-list-heading">
+                <h2>سجل التقارير</h2>
+                <span>الأحدث أولًا</span>
+            </div>
+
+            {% set ns = namespace(items=[]) %}
+
+            {% for report in assessments %}
+                {% set item = {
+                    'type': 'gail',
+                    'id': report.id,
+                    'date': report.created_at,
+                    'sort_date': report.created_at,
+                    'status': report.status,
+                    'count': report.answers|length
+                } %}
+                {% set _ = ns.items.append(item) %}
+            {% endfor %}
+
+            {% for exam in self_exams %}
+                {% set item = {
+                    'type': 'self_exam',
+                    'id': exam.id,
+                    'date': exam.exam_date,
+                    'sort_date': exam.exam_date,
+                    'status': exam.status,
+                    'count': exam.observations|length
+                } %}
+                {% set _ = ns.items.append(item) %}
+            {% endfor %}
+
+            {% set all_reports = ns.items|sort(attribute='sort_date', reverse=true) %}
+
+            {% if all_reports %}
+
+                {% for report in all_reports %}
+
+                    <a
+                        href="{% if report.type == 'gail' %}/reports/{{ report.id }}{% else %}/self-exams/{{ report.id }}{% endif %}"
+                        class="report-card report-link"
+                        style="animation-delay: {{ loop.index0 * 0.1 }}s;"
+                    >
+
+                        <div class="report-top">
+
+                            <div class="report-title">
+
+                                <div class="report-icon">♡</div>
+
+                                <div>
+                                    {% if report.type == 'gail' %}
+                                        <h3>تقييم عوامل خطورة سرطان الثدي</h3>
+                                        <p>BREAST CANCER RISK ASSESSMENT</p>
+                                    {% else %}
+                                        <h3>سجل الفحص الذاتي للثدي</h3>
+                                        <p>BREAST SELF-EXAMINATION</p>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+
+                            <span class="report-status">
+                                {% if report.type == 'gail' %}
+                                    {% if report.status == 'completed' %}
+                                        مكتمل
+                                    {% else %}
+                                        {{ report.status }}
+                                    {% endif %}
+                                {% else %}
+                                    مسجل
+                                {% endif %}
+                            </span>
+
+                        </div>
+
+                        <div class="report-info">
+
+                            <span class="report-date">
+                                تاريخ {% if report.type == 'gail' %}التقييم{% else %}الفحص{% endif %}:
+                                {{ report.date }}
+                            </span>
+
+                            <span class="report-date">
+                                رقم التقرير: #{{ report.id }}
+                            </span>
+
+                            <span class="report-date">
+                                {% if report.type == 'gail' %}
+                                    عدد الإجابات: {{ report.count }}
+                                {% else %}
+                                    عدد الملاحظات: {{ report.count }}
+                                {% endif %}
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-reports">
+
+                    <div class="empty-icon">♡</div>
+
+                    <h3>لا توجد تقارير حتى الآن</h3>
+
+                    <p>
+                        لم تقومي بإجراء أي تقييم أو تسجيل فحص ذاتي بعد.
+                        ابدئي رحلتكِ لمتابعة سجل صحتكِ.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <a href="#" class="footer-item">
+            ♙
+            <span>حسابي</span>
+        </a>
+
+        <a href="#" class="footer-item">
+            ⚙
+            <span>الإعدادات</span>
+        </a>
+
+        <a href="/main" class="footer-item brand-footer">
+            ♡
+            <span>بصمة وردية</span>
+        </a>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
