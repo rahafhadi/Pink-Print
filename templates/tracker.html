@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بصمة وردية | تقاريري السابقة</title>
+    <!-- خط كايرو المعتمد -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- ملف الستايل الخاص بتتبع التقارير المتوافق مع main2.css -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/tracker.css') }}"></head>
+<body>
+
+    <div class="dashboard">
+
+        <!-- =========================
+             الهيدر المتناسق مع بصمة وردية
+        ========================= -->
+    <header class="header">
+        <div class="brand">
+            <a href="/main" class="brand">
+                <img
+                src="{{ url_for('static', filename='images/logo.png') }}"
+                alt="بصمة وردية"
+                class="brand-logo"
+                >
+            </a>
+        </div>
+
+        <div class="header-actions">
+            <a href="/main" class="back-link" title="الرجوع للصفحة السابقة">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+                <span>الرئيسية</span>
+            </a>
+        </div>
+    </header>
+
+        <!-- =========================
+             محتوى صفحة تقاريري السابقة
+        ========================= -->
+        <main class="main-content">
+
+            <!-- عنوان الصفحة التمهيدي -->
+            <div class="tracker-intro">
+                <div class="tracker-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>سجل الفحوصات الذاتية</span>
+                </div>
+                <h1>تقاريري السابقة</h1>
+                <p>تابعي نتائج فحوصاتكِ الدورية، وقومي بمراجعة التغيرات أولاً بأول لحماية صحتكِ.</p>
+            </div>
+
+            <!-- زر تسجيل فحص جديد (بدل log a new self exam) -->
+            <div class="top-action-bar">
+                <button type="button" class="btn-new-exam" id="btnNewExam">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span>لتسجيل فحص جديد</span>
+                </button>
+            </div>
+
+            <!-- قائمة كروت الفحوصات (3 بوكسات أساسية) -->
+            <div class="reports-list" id="reportsList">
+                <div id="emptyState" class="empty-state">
+                    <p>لسه مسجلتيش أي فحص ❤️</p>
+                    <span>ابدئي بتسجيل أول فحص ليكي، وهتلاقي تقاريرك هنا.</span>
+                </div>
+            </div>
+                
+        </main>
+
+        <!-- =========================
+             الفوتر (طراز main2.css)
+        ========================= -->
+        <footer class="footer">
+            <a href="#home" class="footer-item brand-footer">
+                <span class="footer-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                    </svg>
+                </span>
+                <span>بصمة وردية</span>
+            </a>
+
+            <a href="#settings" class="footer-item">
+                <span class="footer-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                </span>
+                <span>الإعدادات</span>
+            </a>
+
+            <a href="#profile" class="footer-item">
+                <span class="footer-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </span>
+                <span>حسابي</span>
+            </a>
+        </footer>
+
+    </div>
+
+    <!-- ===================================================
+         نافذة تسجيل فحص جديد (Modal: Log New Exam)
+    =================================================== -->
+    
+    <div class="modal-overlay" id="newExamModal">
+        <div class="modal-box" dir="rtl">
+
+            <div class="modal-header">
+                <h3>تسجيل فحص ذاتي جديد</h3>
+                <button type="button" class="modal-close-btn modal-close-trigger">&times;</button>
+            </div>
+
+            <form id="formNewExam">
+
+                <div class="form-group">
+                    <label for="newExamDateInput">تاريخ الفحص</label>
+                    <input
+                        type="date"
+                        id="newExamDateInput"
+                        class="form-input"
+                        required
+                    >
+                </div>
+
+                <p class="exam-form-intro">
+                    سجّلي ملاحظاتكِ لكل منطقة على حدة. يمكنكِ ترك أي سؤال دون إجابة.
+                </p>
+
+                <!-- RIGHT BREAST -->
+                <section class="exam-side">
+                    <h3 class="exam-side-title">الثدي الأيمن</h3>
+
+                    <details class="exam-section">
+                        <summary>١. الربع العلوي الخارجي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="right_uo_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="right_uo_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="right_uo_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="right_uo_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="right_uo_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٢. الربع العلوي الداخلي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="right_ui_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="right_ui_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="right_ui_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="right_ui_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="right_ui_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٣. الربع السفلي الخارجي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="right_lo_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="right_lo_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="right_lo_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="right_lo_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="right_lo_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٤. الربع السفلي الداخلي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="right_li_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="right_li_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="right_li_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="right_li_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="right_li_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٥. الحلمة والهالة</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>إفرازات من الحلمة؟</label>
+                                <select class="form-select" name="right_nipple_discharge">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير جديد في اتجاه الحلمة أو انقلابها؟</label>
+                                <select class="form-select" name="right_nipple_inversion">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في جلد الحلمة أو الهالة؟</label>
+                                <select class="form-select" name="right_nipple_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="right_nipple_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="right_nipple_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٦. منطقة الإبط الأيمن</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو تورم؟</label>
+                                <select class="form-select" name="right_axilla_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="right_axilla_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="right_axilla_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- LEFT BREAST -->
+                <section class="exam-side">
+                    <h3 class="exam-side-title">الثدي الأيسر</h3>
+
+                    <details class="exam-section">
+                        <summary>١. الربع العلوي الخارجي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="left_uo_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="left_uo_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="left_uo_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="left_uo_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="left_uo_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٢. الربع العلوي الداخلي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="left_ui_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="left_ui_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="left_ui_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="left_ui_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="left_ui_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٣. الربع السفلي الخارجي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="left_lo_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="left_lo_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="left_lo_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="left_lo_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="left_lo_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٤. الربع السفلي الداخلي</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو سماكة جديدة؟</label>
+                                <select class="form-select" name="left_li_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="left_li_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في الجلد؟</label>
+                                <select class="form-select" name="left_li_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تورم أو تغير في الشكل؟</label>
+                                <select class="form-select" name="left_li_shape">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="left_li_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٥. الحلمة والهالة</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>إفرازات من الحلمة؟</label>
+                                <select class="form-select" name="left_nipple_discharge">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير جديد في اتجاه الحلمة أو انقلابها؟</label>
+                                <select class="form-select" name="left_nipple_inversion">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تغير في جلد الحلمة أو الهالة؟</label>
+                                <select class="form-select" name="left_nipple_skin">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="left_nipple_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="left_nipple_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="exam-section">
+                        <summary>٦. منطقة الإبط الأيسر</summary>
+                        <div class="exam-section-content">
+                            <div class="form-group">
+                                <label>كتلة أو تورم؟</label>
+                                <select class="form-select" name="left_axilla_lump">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ألم أو حساسية؟</label>
+                                <select class="form-select" name="left_axilla_pain">
+                                    <option value="">اختاري الإجابة</option>
+                                    <option value="no">لم ألاحظ</option>
+                                    <option value="yes">لاحظت</option>
+                                    <option value="unsure">غير متأكدة</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>تفاصيل إضافية</label>
+                                <textarea class="form-textarea" name="left_axilla_notes" placeholder="اكتبي تفاصيل الملاحظة..."></textarea>
+                            </div>
+                        </div>
+                    </details>
+                </section>
+
+                <!-- GENERAL NOTES -->
+                <div class="form-group general-notes">
+                    <label for="newExamNotes">ملاحظات عامة إضافية</label>
+                    <textarea
+                        id="newExamNotes"
+                        class="form-textarea"
+                        name="general_notes"
+                        placeholder="أي ملاحظات أخرى ترغبين في تسجيلها..."
+                    ></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary modal-close-trigger">
+                        إلغاء
+                    </button>
+                    <button type="submit" class="btn-primary-submit">
+                        حفظ الفحص
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================
+         نافذة تعديل النتيجة (Modal: Edit Exam Result)
+    =================================================== -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>تعديل نتيجة الفحص</h3>
+                <button type="button" class="modal-close-btn modal-close-trigger">&times;</button>
+            </div>
+            <form id="formEditExam">
+                <div class="form-group">
+                    <label for="editDate">تاريخ الفحص المسجل</label>
+                    <input type="text" id="editDate" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="editStatus">حالة النتيجة</label>
+                    <select id="editStatus" class="form-select">
+                        <option value="النتيجة: سليم وطبيعي">النتيجة: سليم وطبيعي</option>
+                        <option value="النتيجة: سليم ومطمئن">النتيجة: سليم ومطمئن</option>
+                        <option value="النتيجة: بحاجة لمتابعة واستشارة">النتيجة: بحاجة لمتابعة واستشارة</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editNotes">تعديل الملاحظات</label>
+                    <textarea id="editNotes" class="form-textarea" rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary modal-close-trigger">إلغاء</button>
+                    <button type="submit" class="btn-primary-submit">حفظ التعديلات</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- إشعار عائم (Toast Notification) -->
+    <div class="toast-msg" id="toast">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span class="toast-text">تمت العملية بنجاح</span>
+    </div>
+
+    <!-- كود الجافاسكريبت المطلوب -->
+    <script src="{{ url_for('static', filename='javascript/trackare.js') }}"></script>
+</body>
+</html>
